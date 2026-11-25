@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  html, body { width:1600px; height:900px; margin:0; overflow:hidden; background:#06111c; }
+  body {
+    font-family:"Microsoft YaHei UI","Microsoft YaHei",sans-serif; color:#eaf8ff;
+    background:
+      linear-gradient(90deg, rgba(3,12,22,.92) 0%, rgba(3,12,22,.20) 33%, rgba(2,10,18,.05) 60%, rgba(2,10,18,.78) 100%),
+      linear-gradient(180deg, rgba(2,10,18,.79) 0%, rgba(2,10,18,.06) 25%, rgba(2,10,18,.05) 65%, rgba(2,10,18,.92) 100%),
+      url('../output/clean_map_mock.png') center/cover no-repeat;
+  }
+  .top {
+    height: 96px; display:flex; align-items:center; justify-content:space-between; padding: 20px 34px 0;
+    background: linear-gradient(180deg, rgba(3,15,25,.92), rgba(3,15,25,0));
+  }
+  .brand { display:flex; align-items:center; gap:14px; }
+  .logo { width:44px; height:44px; border-radius:14px; border:1px solid rgba(102,230,255,.52);
+    background:linear-gradient(145deg,rgba(88,228,255,.34),rgba(89,255,201,.09)); position:relative;
+    box-shadow:0 0 28px rgba(80,220,255,.16); }
+  .logo:before { content:""; width:19px; height:19px; border:2px solid #66e6ff; border-radius:4px;
+    position:absolute; inset:0; margin:auto; transform:rotate(45deg); box-shadow:0 0 16px rgba(102,230,255,.8); }
+  h1 { margin:0; font-size:27px; letter-spacing:.055em; font-weight:800; }
+  .sub { margin-top:5px; font-size:12px; letter-spacing:.16em; color:#8cb4c8; }
+  .top-center { display:flex; gap:14px; align-items:center; }
+  .status-chip { padding:10px 16px; border:1px solid rgba(102,230,255,.22); background:rgba(5,24,38,.74);
+    border-radius:12px; backdrop-filter:blur(14px); color:#9fc4d5; font-size:12px; }
+  .status-chip b { color:#eafcff; font-size:14px; margin-left:7px; }
+  .live { color:#8fffc8 !important; }
+  .top-right { text-align:right; }
+  .top-right .label { color:#7f9fb2; font-size:10px; letter-spacing:.16em; }
+  .top-right .value { font-size:19px; font-weight:700; color:#72eaff; margin-top:5px; }
+  .main { padding: 6px 30px 20px; height:804px; position:relative; }
+  .left { position:absolute; left:30px; top:4px; width:316px; display:flex; flex-direction:column; gap:12px; }
+  .section-kicker { font-size:10px; color:#6edff8; letter-spacing:.2em; margin:0 0 4px 4px; }
+  .device-card { height:138px; padding:16px 17px; border-radius:17px; border:1px solid rgba(111,217,255,.21);
+    background:linear-gradient(140deg,rgba(8,29,45,.92),rgba(6,20,34,.80)); box-shadow:0 16px 42px rgba(0,0,0,.26);
+    backdrop-filter:blur(16px); position:relative; overflow:hidden; }
+  .device-card:after { content:""; position:absolute; width:140px; height:140px; right:-62px; top:-58px;
+    border-radius:50%; background:radial-gradient(circle,rgba(83,221,255,.19),transparent 68%); }
+  .card-head { display:flex; justify-content:space-between; align-items:center; }
+  .card-title { display:flex; align-items:center; gap:9px; font-size:14px; font-weight:700; }
+  .card-icon { width:28px; height:28px; display:grid; place-items:center; border-radius:9px;
+    background:rgba(80,222,255,.13); border:1px solid rgba(80,222,255,.25); color:#75e8ff; font-size:15px; }
+  .updated { font-size:9px; color:#668496; letter-spacing:.05em; }
+  .metrics { display:flex; justify-content:space-between; margin-top:18px; }
+  .metric b { display:block; font-size:27px; line-height:1; color:#f0fcff; font-weight:700; }
+  .metric span { display:block; margin-top:6px; font-size:10px; color:#86a7b7; }
+  .metric.off b { color:#ffca78; }
+  .metric.alarm b { color:#ff775e; }
+  .metric.green b { color:#8fffc8; }
+  .device-card.uwb { height:126px; }
+  .map-badge { position:absolute; left:380px; top:26px; padding:9px 14px; border-radius:12px;
+    background:rgba(5,21,34,.78); border:1px solid rgba(102,230,255,.22); font-size:11px; color:#9fc2d3;
+    backdrop-filter:blur(12px); }
+  .map-badge b { color:#75e7ff; margin-right:6px; }
+  .map-legend { position:absolute; left:380px; top:72px; display:flex; gap:14px; font-size:10px; color:#9eb9c8; }
+  .dot { width:7px; height:7px; display:inline-block; border-radius:50%; margin-right:5px; box-shadow:0 0 9px currentColor; }
+  .red { color:#ff6a54; background:#ff6a54; } .cyan { color:#75e7ff; background:#75e7ff; } .gray { color:#8397a4; background:#8397a4; }
+  .right { position:absolute; right:30px; top:4px; width:340px; height:656px; border-radius:18px;
+    border:1px solid rgba(111,217,255,.21); background:linear-gradient(160deg,rgba(6,25,39,.92),rgba(4,16,28,.86));
+    backdrop-filter:blur(18px); box-shadow:0 18px 56px rgba(0,0,0,.32); padding:17px; }
+  .panel-title { display:flex; justify-content:space-between; align-items:center; }
+  .panel-title h2 { margin:0; font-size:16px; letter-spacing:.04em; }
+  .panel-title span { font-size:10px; color:#ff9b88; border:1px solid rgba(255,112,82,.35); background:rgba(255,80,54,.11); padding:5px 8px; border-radius:99px; }
+  .filters { display:flex; gap:6px; margin:14px 0 11px; }
+  .filter { padding:6px 9px; border-radius:8px; font-size:10px; color:#809dac; border:1px solid rgba(126,188,214,.14); background:rgba(255,255,255,.025); }
+  .filter.active { color:#e9fbff; border-color:rgba(102,230,255,.38); background:rgba(102,230,255,.1); }
+  .alert { padding:12px 11px; margin-bottom:9px; border-radius:12px; border:1px solid rgba(255,107,80,.18); background:rgba(255,78,48,.055); }
+  .alert-head { display:flex; justify-content:space-between; font-size:11px; font-weight:700; color:#fff0ed; }
+  .alert-head em { font-style:normal; font-size:9px; color:#ff7a63; }
+  .alert p { margin:7px 0 0; color:#91aab8; font-size:10px; line-height:1.55; }
+  .alert .meta { margin-top:6px; display:flex; justify-content:space-between; color:#6e8797; font-size:9px; }
+  .alert.critical { border-color:rgba(255,88,63,.34); box-shadow:inset 3px 0 0 #ff5e43; }
+  .alert.warn { border-color:rgba(255,181,67,.24); background:rgba(255,164,40,.045); }
+  .alert.warn .alert-head em { color:#ffbd64; }
+  .bottom { position:absolute; left:380px; bottom:0; width:800px; height:134px; border-radius:16px;
+    background:rgba(5,22,35,.84); border:1px solid rgba(111,217,255,.18); backdrop-filter:blur(16px);
+    padding:15px 18px; display:flex; gap:26px; }
+  .chart-block { flex:1; }
+  .chart-title { display:flex; justify-content:space-between; font-size:10px; color:#91afbe; }
+  .chart-title b { color:#e8faff; font-size:16px; }
+  .bars { margin-top:12px; height:52px; display:flex; align-items:flex-end; gap:6px; }
+  .bar { flex:1; border-radius:5px 5px 1px 1px; background:linear-gradient(180deg,#5fe9ff,rgba(57,151,183,.15)); min-height:8px; }
+  .bar.hot { background:linear-gradient(180deg,#ff8067,rgba(168,50,31,.2)); }
+  .timeline { flex:1.1; border-left:1px solid rgba(126,188,214,.12); padding-left:22px; }
+  .timeline-item { display:flex; gap:9px; font-size:10px; color:#849fad; margin:8px 0; }
+  .timeline-item i { width:7px; height:7px; border-radius:50%; background:#65dfa7; margin-top:4px; box-shadow:0 0 8px #65dfa7; }
+  .timeline-item b { color:#dff8ff; font-weight:600; }
+  .footer { position:absolute; left:30px; bottom:12px; font-size:9px; color:#57788a; letter-spacing:.08em; }
+</style>
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <div class="logo"></div>
+      <div><h1>天安数码城 · 智慧工地驾驶舱</h1><div class="sub">TIAN'AN CYBER PARK · SMART CONSTRUCTION DASHBOARD</div></div>
+    </div>
+    <div class="top-center">
+      <div class="status-chip">2026/11/23 周一 <b>16:30:18</b></div>
+      <div class="status-chip">香港天文台 <b>21°C · 多云</b></div>
+    </div>
+    <div class="top-right"><div class="label">IOT PLATFORM</div><div class="value">● 在线 99.6%</div></div>
+  </header>
+
+  <main class="main">
+    <section class="left">
+      <div class="section-kicker">DEVICE OVERVIEW / 设备总览</div>
+      <article class="device-card">
+        <div class="card-head"><div class="card-title"><span class="card-icon">◉</span>CCTV 摄像头</div><span class="updated">30 秒前更新</span></div>
+        <div class="metrics"><div class="metric"><b>128</b><span>设备总数</span></div><div class="metric off"><b>12</b><span>离线</span></div><div class="metric alarm"><b>7</b><span>当前告警</span></div></div>
+      </article>
+      <article class="device-card">
+        <div class="card-head"><div class="card-title"><span class="card-icon">⌚</span>智能手表</div><span class="updated">实时</span></div>
+        <div class="metrics"><div class="metric"><b>86</b><span>设备总数</span></div><div class="metric off"><b>5</b><span>离线</span></div><div class="metric alarm"><b>3</b><span>当前告警</span></div></div>
+      </article>
+      <article class="device-card">
+        <div class="card-head"><div class="card-title"><span class="card-icon">▣</span>电子锁</div><span class="updated">1 分钟前更新</span></div>
+        <div class="metrics"><div class="metric"><b>64</b><span>设备总数</span></div><div class="metric off"><b>4</b><span>离线</span></div><div class="metric alarm"><b>2</b><span>当前告警</span></div></div>
+      </article>
+      <article class="device-card uwb">
+        <div class="card-head"><div class="card-title"><span class="card-icon">◎</span>UWB 电子围栏</div><span class="updated">实时</span></div>
+        <div class="metrics"><div class="metric green"><b>9</b><span>当前告警记录</span></div><div class="metric alarm"><b>3</b><span>越界人员</span></div><div class="metric"><b>1.2s</b><span>平均响应</span></div></div>
+      </article>
+    </section>
+
+    <div class="map-badge"><b>LIVE MAP</b> 3D 园区设备态势</div>
+    <div class="map-legend"><span><i class="dot red"></i>告警设备 21</span><span><i class="dot cyan"></i>在线设备 245</span><span><i class="dot gray"></i>离线设备 21</span></div>
+
+    <aside class="right">
+      <div class="panel-title"><h2>实时告警</h2><span>21 条待处理</span></div>
+      <div class="filters"><span class="filter active">全部</span><span class="filter">严重</span><span class="filter">警告</span><span class="filter">未确认</span></div>
+      <div class="alert critical">
+        <div class="alert-head"><span>UWB 电子围栏越界</span><em>严重</em></div>
+        <p>人员 TAG-0182 进入施工禁区 D-03，持续 01:42</p>
+        <div class="meta"><span>东区深基坑围栏</span><span>16:29:52</span></div>
+      </div>
+      <div class="alert critical">
+        <div class="alert-head"><span>智能手表 SOS</span><em>严重</em></div>
+        <p>工人 W-026 触发一键呼救，定位在 B 塔 18F</p>
+        <div class="meta"><span>B 塔核心筒</span><span>16:27:18</span></div>
+      </div>
+      <div class="alert warn">
+        <div class="alert-head"><span>电子锁异常开启</span><em>警告</em></div>
+        <p>LOCK-A17 非授权开锁，现场照片已上传</p>
+        <div class="meta"><span>材料仓库 2 号门</span><span>16:24:06</span></div>
+      </div>
+      <div class="alert warn">
+        <div class="alert-head"><span>CCTV 视频离线</span><em>警告</em></div>
+        <p>CAM-E12 信号中断 03:16，请检查供电与网络</p>
+        <div class="meta"><span>东侧塔吊区域</span><span>16:22:41</span></div>
+      </div>
+      <div class="alert">
+        <div class="alert-head"><span>智能手表心率异常</span><em>提示</em></div>
+        <p>工人 W-057 连续 5 分钟心率超过 125 bpm</p>
+        <div class="meta"><span>北区钢筋加工棚</span><span>16:18:33</span></div>
+      </div>
+    </aside>
+
+    <section class="bottom">
+      <div class="chart-block">
+        <div class="chart-title"><span>24H 告警趋势</span><b>38</b></div>
+        <div class="bars">
+          <i class="bar" style="height:24%"></i><i class="bar" style="height:42%"></i><i class="bar" style="height:31%"></i><i class="bar hot" style="height:72%"></i><i class="bar" style="height:46%"></i><i class="bar" style="height:59%"></i><i class="bar hot" style="height:88%"></i><i class="bar" style="height:52%"></i><i class="bar" style="height:64%"></i><i class="bar" style="height:38%"></i><i class="bar" style="height:55%"></i><i class="bar" style="height:80%"></i>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="chart-title"><span>最近事件</span><span>全部设备</span></div>
+        <div class="timeline-item"><i></i><span><b>16:30</b> UWB 围栏 D-03 持续告警已升级</span></div>
+        <div class="timeline-item"><i></i><span><b>16:28</b> 智能手表 W-026 SOS 事件已通知值班员</span></div>
+        <div class="timeline-item"><i></i><span><b>16:25</b> 电子锁 A17 告警已关联现场照片</span></div>
+      </div>
+    </section>
+    <div class="footer">DATA SOURCE · IOT PLATFORM / UWB / CCTV / SMART WATCH / SMART LOCK</div>
+  </main>
+</body>
+</html>
+
+

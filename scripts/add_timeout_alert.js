@@ -1,0 +1,11 @@
+const fs = require('fs');
+let app = fs.readFileSync('app.js', 'utf8');
+const marker = "  document.getElementById('metricArea').textContent = '2';\n";
+const code = `  document.getElementById('metricArea').textContent = '2';
+  const metricAreaCard = document.getElementById('metricAreaCard');
+  const metricAreaValue = Number(document.getElementById('metricArea').textContent);
+  metricAreaCard.classList.toggle('metric-alert', Number.isFinite(metricAreaValue) && metricAreaValue > 0);
+`;
+if (!app.includes(marker)) throw new Error('metric marker not found');
+app = app.replace(marker, code);
+fs.writeFileSync('app.js', app);

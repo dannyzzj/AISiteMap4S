@@ -1,0 +1,76 @@
+INFO:BlenderGIS:95:###### Starting new Blender session : 2026-11-18 16:51:06
+DEBUG:BlenderGIS.core.checkdeps:9:GDAL Python binding unavailable
+DEBUG:BlenderGIS.core.checkdeps:20:PyProj unavailable
+DEBUG:BlenderGIS.core.checkdeps:31:Pillow unavailable
+ERROR:BlenderGIS.core.checkdeps:42:Cannot install ImageIO's Freeimage plugin
+Traceback (most recent call last):
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\checkdeps.py", line 40, in <module>
+    imageio.plugins._freeimage.get_freeimage_lib() #try to download freeimage lib
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\plugins\_freeimage.py", line 56, in get_freeimage_lib
+    return get_remote_file(FNAME_PER_PLATFORM[plat])
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\core\fetching.py", line 99, in get_remote_file
+    _fetch_file(url, filename)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\core\fetching.py", line 153, in _fetch_file
+    raise IOError('Unable to download %r. Perhaps there is a no internet '
+                  'connection? If there is, please report this problem.' %
+                  os.path.basename(file_name))
+OSError: Unable to download 'freeimage-3.18.0-win64.dll'. Perhaps there is a no internet connection? If there is, please report this problem.
+INFO:BlenderGIS:95:###### Starting new Blender session : 2026-11-18 16:54:45
+DEBUG:BlenderGIS.core.checkdeps:9:GDAL Python binding unavailable
+DEBUG:BlenderGIS.core.checkdeps:20:PyProj unavailable
+DEBUG:BlenderGIS.core.checkdeps:31:Pillow unavailable
+ERROR:BlenderGIS.core.checkdeps:42:Cannot install ImageIO's Freeimage plugin
+Traceback (most recent call last):
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\checkdeps.py", line 40, in <module>
+    imageio.plugins._freeimage.get_freeimage_lib() #try to download freeimage lib
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\plugins\_freeimage.py", line 56, in get_freeimage_lib
+    return get_remote_file(FNAME_PER_PLATFORM[plat])
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\core\fetching.py", line 99, in get_remote_file
+    _fetch_file(url, filename)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\core\fetching.py", line 153, in _fetch_file
+    raise IOError('Unable to download %r. Perhaps there is a no internet '
+                  'connection? If there is, please report this problem.' %
+                  os.path.basename(file_name))
+OSError: Unable to download 'freeimage-3.18.0-win64.dll'. Perhaps there is a no internet connection? If there is, please report this problem.
+INFO:BlenderGIS:95:###### Starting new Blender session : 2026-11-18 16:54:54
+DEBUG:BlenderGIS.core.checkdeps:9:GDAL Python binding unavailable
+DEBUG:BlenderGIS.core.checkdeps:20:PyProj unavailable
+DEBUG:BlenderGIS.core.checkdeps:31:Pillow unavailable
+ERROR:BlenderGIS.core.checkdeps:42:Cannot install ImageIO's Freeimage plugin
+Traceback (most recent call last):
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\checkdeps.py", line 40, in <module>
+    imageio.plugins._freeimage.get_freeimage_lib() #try to download freeimage lib
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\plugins\_freeimage.py", line 56, in get_freeimage_lib
+    return get_remote_file(FNAME_PER_PLATFORM[plat])
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\core\fetching.py", line 99, in get_remote_file
+    _fetch_file(url, filename)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\core\fetching.py", line 153, in _fetch_file
+    raise IOError('Unable to download %r. Perhaps there is a no internet '
+                  'connection? If there is, please report this problem.' %
+                  os.path.basename(file_name))
+OSError: Unable to download 'freeimage-3.18.0-win64.dll'. Perhaps there is a no internet connection? If there is, please report this problem.
+INFO:BlenderGIS:95:###### Starting new Blender session : 2026-11-18 16:55:00
+DEBUG:BlenderGIS.core.checkdeps:9:GDAL Python binding unavailable
+DEBUG:BlenderGIS.core.checkdeps:20:PyProj unavailable
+DEBUG:BlenderGIS.core.checkdeps:31:Pillow unavailable
+ERROR:BlenderGIS.core.checkdeps:42:Cannot install ImageIO's Freeimage plugin
+Traceback (most recent call last):
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\checkdeps.py", line 40, in <module>
+    imageio.plugins._freeimage.get_freeimage_lib() #try to download freeimage lib
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\plugins\_freeimage.py", line 56, in get_freeimage_lib
+    return get_remote_file(FNAME_PER_PLATFORM[plat])
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\core\fetching.py", line 99, in get_remote_file
+    _fetch_file(url, filename)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\Codex\3DSiteMap\blender_user_scripts\addons\BlenderGIS\core\lib\imageio\core\fetching.py", line 153, in _fetch_file
+    raise IOError('Unable to download %r. Perhaps there is a no internet '
+                  'connection? If there is, please report this problem.' %
+                  os.path.basename(file_name))
+OSError: Unable to download 'freeimage-3.18.0-win64.dll'. Perhaps there is a no internet connection? If there is, please report this problem.

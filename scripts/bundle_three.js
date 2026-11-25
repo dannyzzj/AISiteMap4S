@@ -1,0 +1,11 @@
+const fs = require('fs');
+let three = fs.readFileSync('assets/three.module.js','utf8');
+let orbit = fs.readFileSync('assets/OrbitControls.js','utf8');
+three = three.replace(/export\s*\{([\s\S]*?)\};\s*$/, 'window.THREE = {$1};\n');
+orbit = orbit.replace(/import\s*\{([\s\S]*?)\}\s*from\s*'three';\s*/, 'const {$1} = window.THREE;\n');
+orbit = orbit.replace(/export\s*\{\s*OrbitControls\s*\};\s*$/, 'window.THREE.OrbitControls = OrbitControls;\n');
+if (three.includes('export {')) throw new Error('three export still present');
+if (/^import\s/m.test(orbit) || orbit.includes('export {')) throw new Error('orbit module syntax still present');
+const out = `/* Three.js r170 + OrbitControls, bundled locally for file:// use. MIT license. */\n(function(){\n'use strict';\n${three}\n})();\n(function(){\n'use strict';\n${orbit}\n})();\n`;
+fs.writeFileSync('assets/three.bundle.js', out);
+console.log('written', out.length);

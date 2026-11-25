@@ -1,0 +1,3 @@
+const fs=require('fs'); let p='scripts/build_blender_scene.py'; let s=fs.readFileSync(p,'utf8');
+s=s.replace("    try:\n        bpy.ops.render.render(write_still=True)\n        print('SAVED_PREVIEW', OUT_PREVIEW)\n    except Exception as exc:\n        print('RENDER_WARNING', repr(exc))\n", "    if os.environ.get('BLENDER_RENDER_PREVIEW') == '1':\n        try:\n            bpy.ops.render.render(write_still=True)\n            print('SAVED_PREVIEW', OUT_PREVIEW)\n        except Exception as exc:\n            print('RENDER_WARNING', repr(exc))\n    else:\n        print('PREVIEW_SKIPPED', 'Set BLENDER_RENDER_PREVIEW=1 to render a preview.')\n");
+fs.writeFileSync(p,s);

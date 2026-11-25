@@ -1,0 +1,1 @@
+const fs=require('fs'); let app=fs.readFileSync('app.js','utf8'); const snippet=fs.readFileSync('scripts/weather_snippet.js','utf8'); const marker="document.getElementById('metricBuildings').textContent = D.meta.buildingCount;"; if(!app.includes(marker)) throw new Error('marker missing'); app=app.replace(marker,snippet+marker); fs.writeFileSync('app.js',app);
